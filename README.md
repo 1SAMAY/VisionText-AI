@@ -43,7 +43,7 @@ VisionText AI focuses on preserving the shape and meaning of technical text:
 - Multilingual text
 - PDF page structure
 
-Example reconstruction:
+
 
 
 

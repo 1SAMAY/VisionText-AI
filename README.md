@@ -45,16 +45,7 @@ VisionText AI focuses on preserving the shape and meaning of technical text:
 
 Example reconstruction:
 
-```txt
-Input OCR noise:
-Jo e de = ઝુ
 
-Final output:
-∫₀∞ e^{-x²} dx = √π/2
-
-LaTeX:
-\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
-```
 
 ## Symbol Coverage
 

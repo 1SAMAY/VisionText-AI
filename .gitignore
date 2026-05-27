@@ -14,3 +14,5 @@ verification-*.png
 ocr-sample.png
 *.traineddata
 .chrome-profile*/
+
+.vercel

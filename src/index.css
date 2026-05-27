@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Color+Emoji&family=Noto+Emoji&family=Noto+Sans:wght@400;500;600;700&family=Noto+Sans+Math&family=Noto+Sans+Symbols&family=Noto+Sans+Symbols+2&display=swap');
+
+@font-face {
+  font-family: 'STIX Two Math';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/stix-two-math/files/stix-two-math-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Latin Modern Math';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('https://cdn.jsdelivr.net/npm/@fontsource/latin-modern-math/files/latin-modern-math-latin-400-normal.woff2') format('woff2');
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-ui:
+    'Inter', 'Noto Sans', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', sans-serif;
+  --font-math:
+    'STIX Two Math', 'Latin Modern Math', 'Noto Sans Math', 'Noto Sans Symbols',
+    'Noto Sans Symbols 2', 'Noto Emoji', 'Noto Color Emoji', 'Noto Sans', 'Inter',
+    serif;
+  --font-code:
+    'JetBrains Mono', 'Noto Sans Symbols', 'Noto Sans Symbols 2', 'Noto Emoji',
+    'Noto Color Emoji', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    'Liberation Mono', monospace;
+  --font-ocr:
+    'STIX Two Math', 'Latin Modern Math', 'Noto Sans Math', 'Noto Sans Symbols',
+    'Noto Sans Symbols 2', 'Noto Emoji', 'Noto Color Emoji', 'Noto Sans', 'Inter',
+    sans-serif;
+  color: #f8fbff;
+  background: #05070f;
+  font-family: var(--font-ui);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #05070f;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+pre,
+code,
+kbd,
+samp {
+  font-family: var(--font-code);
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+::selection {
+  color: #031018;
+  background: #91ffef;
+}
+
+.glass-panel {
+  max-width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.045)),
+    rgba(5, 7, 15, 0.58);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 24px 80px rgba(0, 0, 0, 0.36);
+  backdrop-filter: blur(24px);
+}
+
+.neon-border {
+  position: relative;
+}
+
+.neon-border::before {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  content: '';
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(35, 213, 255, 0.75), rgba(255, 62, 165, 0.6), rgba(145, 255, 239, 0.55));
+  opacity: 0.55;
+  filter: blur(14px);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.scrollbar-soft {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(145, 255, 239, 0.4) rgba(255, 255, 255, 0.08);
+}
+
+.scrollbar-soft::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scrollbar-soft::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.scrollbar-soft::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(#23d5ff, #ff3ea5);
+}
+
+.ocr-output {
+  font-family: var(--font-ocr);
+  font-size: clamp(0.96rem, 0.94rem + 0.18vw, 1.08rem);
+  line-height: 1.85;
+  letter-spacing: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+  font-variant-ligatures: contextual;
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1,
+    'calt' 1,
+    'mark' 1,
+    'mkmk' 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  unicode-bidi: plaintext;
+}
+
+.latex-output {
+  font-family: var(--font-code);
+  font-size: 0.92rem;
+  line-height: 1.75;
+  letter-spacing: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+  unicode-bidi: plaintext;
+}
+
+.math-render,
+.katex {
+  font-family: var(--font-math);
+  text-rendering: optimizeLegibility;
+}
+
+.math-render .katex {
+  font-size: clamp(1.08rem, 1rem + 0.55vw, 1.55rem);
+  line-height: 1.55;
+}

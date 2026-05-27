@@ -1,8 +1,22 @@
-# VisionText AI
+# VisionOCR - VisionText AI
 
-VisionText AI is a production-ready OCR web app for converting images, screenshots, camera captures, and scanned PDFs into clean editable text. It is designed for difficult OCR cases such as mathematical equations, physics formulas, chemistry notation, programming symbols, multilingual documents, Unicode characters, and emoji-rich text.
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=061018)
+![Vite](https://img.shields.io/badge/Vite-7-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![OCR](https://img.shields.io/badge/OCR-Tesseract.js_+_Mathpix-23D5FF?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-16A34A?style=for-the-badge)
+![Vercel](https://img.shields.io/badge/Deployed_on-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
+
+VisionOCR is a production-ready AI OCR website for converting images, screenshots, camera captures, and scanned PDFs into clean editable text. It is designed for difficult OCR cases such as mathematical equations, physics formulas, chemistry notation, programming symbols, multilingual documents, Unicode characters, and emoji-rich text.
 
 Built with React, Vite, Tailwind CSS, Framer Motion, Tesseract.js, Mathpix integration, pdf.js, KaTeX, and a safe browser-side preprocessing worker.
+
+## Live Demo
+
+[Open VisionOCR on Vercel](https://ai-photo-to-text-website-ocr.vercel.app)
+
+## Preview
+
+![VisionOCR preview](public/visionocr-logo.png)
 
 ## Highlights
 
@@ -22,11 +36,11 @@ Built with React, Vite, Tailwind CSS, Framer Motion, Tesseract.js, Mathpix integ
 - Copy extracted text
 - Download TXT, TEX, and PDF exports
 - Responsive futuristic glassmorphism UI
-- Vercel-ready API route and static frontend build
+- GitHub-ready and Vercel-ready production setup
 
 ## What It Preserves
 
-VisionText AI focuses on preserving the shape and meaning of technical text:
+VisionOCR focuses on preserving the shape and meaning of technical text:
 
 - Mathematical equations
 - Physics formulas
@@ -43,9 +57,18 @@ VisionText AI focuses on preserving the shape and meaning of technical text:
 - Multilingual text
 - PDF page structure
 
+## Example Reconstruction
 
+```txt
+Input OCR noise:
+Jo e de = ઝુ
 
+Final Unicode output:
+∫₀∞ e^{-x²} dx = √π/2
 
+LaTeX output:
+\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
+```
 
 ## Symbol Coverage
 
@@ -116,15 +139,9 @@ sqrt pi -> √π
 <=>     -> ⇔
 ```
 
-It also protects structured content references such as:
-
-```txt
-:contentReference[oaicite:0]{index=0}
-```
-
 ## Typography System
 
-VisionText AI uses a specialized fallback stack so OCR output renders technical text clearly:
+VisionOCR uses a specialized fallback stack so OCR output renders technical text clearly:
 
 - UI: Inter
 - Math and science: STIX Two Math, Latin Modern Math, Noto Sans Math
@@ -163,26 +180,12 @@ VisionText-AI/
 │   └── mathpix.js
 ├── public/
 │   ├── ocr-preprocess-worker.js
-│   └── robots.txt
+│   ├── robots.txt
+│   └── visionocr-logo.png
 ├── src/
 │   ├── components/
-│   │   ├── Background.jsx
-│   │   ├── EquationPreview.jsx
-│   │   ├── Navbar.jsx
-│   │   ├── OCRResult.jsx
-│   │   └── UploadBox.jsx
 │   ├── lib/
-│   │   ├── autoOcr.js
-│   │   ├── classifier.js
-│   │   ├── exporters.js
-│   │   ├── latex.js
-│   │   ├── mathpixClient.js
-│   │   ├── pdf.js
-│   │   ├── preprocess.js
-│   │   ├── reconstruction.js
-│   │   └── tesseractOcr.js
 │   ├── pages/
-│   │   └── Home.jsx
 │   ├── App.jsx
 │   ├── index.css
 │   └── main.jsx
@@ -193,27 +196,25 @@ VisionText-AI/
 
 ## Getting Started
 
-### 1. Install
+### Install
 
 ```bash
 npm install
 ```
 
-### 2. Run Locally
+### Run Locally
 
 ```bash
 npm run dev
 ```
 
-Open the local URL printed by Vite.
-
-### 3. Build
+### Build
 
 ```bash
 npm run build
 ```
 
-### 4. Preview Production Build
+### Preview Production Build
 
 ```bash
 npm run preview
@@ -264,7 +265,7 @@ Add Mathpix environment variables in Vercel if equation OCR is needed in product
 
 ## Accuracy Notes
 
-No OCR engine can guarantee perfect output for every blurry, cropped, handwritten, or low-resolution image. VisionText AI improves results by combining:
+No OCR engine can guarantee perfect output for every blurry, cropped, handwritten, or low-resolution image. VisionOCR improves results by combining:
 
 - Safe preprocessing
 - OCR confidence checks
@@ -287,4 +288,4 @@ npm run lint     # Run ESLint
 
 ## License
 
-This project is available for learning, portfolio, and production adaptation.
+MIT License.

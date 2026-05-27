@@ -56,7 +56,7 @@ export function reconstructOCRResult({
     text = latexToUnicode(latex)
   }
 
-  text = cleanupFormattedText(normalizeSymbols(text))
+  text = cleanupFormattedText(removeGeneratedReferences(normalizeSymbols(text)))
 
   return {
     text,
@@ -84,6 +84,10 @@ function cleanupFormattedText(text = '') {
     .replace(/[ \t]+\n/g, '\n')
     .replace(/\n{4,}/g, '\n\n\n')
     .trim()
+}
+
+function removeGeneratedReferences(text = '') {
+  return text.replace(/:contentReference\[oaicite:\d+\]\{index=\d+\}/g, '')
 }
 
 function lowConfidence(confidence) {

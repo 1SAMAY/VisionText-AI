@@ -19,7 +19,7 @@ export async function handleMathpixRequest({ method, body, env }) {
     return {
       status: 501,
       body: {
-        error: 'Mathpix is not configured. Add MATHPIX_APP_ID and MATHPIX_APP_KEY in .env.local or Vercel environment variables.',
+        error: 'Equation OCR service is unavailable.',
       },
     }
   }

@@ -217,7 +217,14 @@ export default function Home() {
               </h1>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:w-[32rem]">
+            <div className="grid gap-3 sm:grid-cols-2 lg:w-[34rem]">
+              <div className="glass-panel overflow-hidden rounded-xl sm:col-span-2">
+                <img
+                  src="/visionocr-logo.png"
+                  alt="VisionOCR futuristic logo"
+                  className="h-44 w-full object-cover object-center sm:h-56"
+                />
+              </div>
               <Feature icon={<Sparkles className="h-5 w-5" />} label="Automatic equation, symbol, and language handling" />
               <Feature icon={<BadgeCheck className="h-5 w-5" />} label={fileStats} />
             </div>

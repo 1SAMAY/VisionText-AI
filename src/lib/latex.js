@@ -218,7 +218,7 @@ export function repairLikelyEquation(text = '') {
 
   if (/^:contentReference\[oaicite:\d+\]\{index=\d+\}/m.test(compact)) {
     return {
-      text: normalizeSymbols(compact),
+      text: '',
       latex: '',
       reason: '',
     }
@@ -242,7 +242,9 @@ export function repairLikelyEquation(text = '') {
 }
 
 export function normalizeSymbols(text = '') {
-  return withProtectedContentReferences(text, (value) =>
+  const value = text.replace(/:contentReference\[oaicite:\d+\]\{index=\d+\}/g, '')
+
+  return (
     formatChemistrySubscripts(
       value
         .replace(/\be\s*\^\s*\{\s*-\s*x\s*\^?\s*2\s*\}/gi, 'e^{-x²}')
@@ -281,7 +283,7 @@ export function normalizeSymbols(text = '') {
         .replace(/([A-Za-z])_([0-9+\-=()]+)/g, (_, base, sub) => `${base}${toLowered(sub)}`)
         .replace(/([A-Za-z])\^\{([0-9+\-=()]+)\}/g, (_, base, sup) => `${base}${toRaised(sup)}`)
         .replace(/([A-Za-z])\^([0-9+\-=()]+)/g, (_, base, sup) => `${base}${toRaised(sup)}`),
-    ),
+    )
   )
 }
 
@@ -289,18 +291,6 @@ function formatChemistrySubscripts(value = '') {
   return value.replace(/\b((?:[A-Z][a-z]?\d*){2,})(?=\b|[+\-),.;:\s])/g, (formula) =>
     formula.replace(/([A-Za-z)])(\d+)/g, (_, atom, digits) => `${atom}${toLowered(digits)}`),
   )
-}
-
-function withProtectedContentReferences(value = '', formatter) {
-  const references = []
-  const protectedValue = value.replace(/:contentReference\[oaicite:\d+\]\{index=\d+\}/g, (match) => {
-    const key = `\uE000${references.length}\uE001`
-    references.push(match)
-    return key
-  })
-
-  const formatted = formatter(protectedValue)
-  return references.reduce((output, reference, index) => output.replace(`\uE000${index}\uE001`, reference), formatted)
 }
 
 function formatExponent(value = '') {

@@ -4,7 +4,6 @@ const chemistrySignals = /\b(PV|nRT|mol|NaCl|H2O|CO2|H₂O|CO₂)\b|[⇌→←Δ
 const codeSignals = /(\{|\}|\[|\]|<>|!=|===|&&|\|\||=>|<\/?[A-Za-z])/u
 const currencySignals = /[₹$€£¥]/u
 const emojiSignals = /[\p{Extended_Pictographic}]/u
-const contentReference = /:contentReference\[oaicite:\d+\]\{index=\d+\}/
 
 export function classifyImage({ fileName = '', preprocessing }) {
   const stats = preprocessing?.stats || {}
@@ -41,7 +40,6 @@ export function analyzeText(text = '') {
   const hasCode = codeSignals.test(value)
   const hasCurrency = currencySignals.test(value)
   const hasEmoji = emojiSignals.test(value)
-  const hasContentReference = contentReference.test(value)
   const hasMixedScriptNoise = /[\u0A80-\u0AFF]/.test(value) && /[A-Za-z]/.test(value) && /\b(Jo|de|ede|Jy)\b/i.test(value)
   const symbolCount = (value.match(/[^\p{L}\p{N}\s.,:;'"!?-]/gu) || []).length
 
@@ -53,7 +51,6 @@ export function analyzeText(text = '') {
     hasCode,
     hasCurrency,
     hasEmoji,
-    hasContentReference,
     hasMixedScriptNoise,
     symbolCount,
     isProbablyBrokenEquation: hasMixedScriptNoise || /\b(Jo|J0|fo|ede|de)\b/i.test(compact),

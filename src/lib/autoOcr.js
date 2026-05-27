@@ -154,8 +154,10 @@ async function runPageOCR({ input, pageLabel, pageStart, pageEnd, onProgress, on
     try {
       mathpixResult = await runMathpixOCR(bestPreprocessing.dataUrl)
     } catch (error) {
-      if (classification.equationCandidate || analyzeText(bestTesseract.text).isProbablyBrokenEquation) {
-        warnings.push(error instanceof Error ? error.message : 'Equation OCR service is unavailable.')
+      const message = error instanceof Error ? error.message : 'Equation OCR service is unavailable.'
+      const serviceUnavailable = /Mathpix is not configured|Equation OCR service is unavailable/i.test(message)
+      if (!serviceUnavailable && (classification.equationCandidate || analyzeText(bestTesseract.text).isProbablyBrokenEquation)) {
+        warnings.push(message)
       }
     }
   }

@@ -9,6 +9,9 @@ export default function OCRResult({ result, copied, isProcessing, error, onCopy,
   const [activeTab, setActiveTab] = useState('text')
   const text = result?.text || ''
   const latex = result?.latex || ''
+  const visibleWarnings = (result?.warnings || []).filter(
+    (warning) => !/Mathpix is not configured|Equation OCR service is unavailable/i.test(warning),
+  )
   const hasText = text.trim().length > 0
   const hasLatex = latex.trim().length > 0
 
@@ -127,14 +130,14 @@ export default function OCRResult({ result, copied, isProcessing, error, onCopy,
         )}
       </div>
 
-      {result?.warnings?.length ? (
+      {visibleWarnings.length ? (
         <div className="mt-4 rounded-lg border border-amber-200/20 bg-amber-300/10 p-3 text-sm text-amber-50/80">
           <p className="mb-2 flex items-center gap-2 font-medium text-amber-50">
             <AlertTriangle className="h-4 w-4" aria-hidden="true" />
             Accuracy notes
           </p>
           <ul className="grid gap-1">
-            {result.warnings.slice(0, 3).map((warning, index) => (
+            {visibleWarnings.slice(0, 3).map((warning, index) => (
               <li key={`${warning}-${index}`}>{warning}</li>
             ))}
           </ul>
